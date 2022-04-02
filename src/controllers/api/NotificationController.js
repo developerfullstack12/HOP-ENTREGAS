@@ -17,8 +17,7 @@ module.exports = {
      * @param res
      */
     SendNotification: async (req, res) => {
-        const requestParams = req.body
-        const {authUserId} = req
+           const {authUserId} = req
         const reqParam = req.body
         const reqObj = {
             message: Joi.string().max(1000).required()

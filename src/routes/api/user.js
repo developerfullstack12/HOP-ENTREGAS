@@ -5,6 +5,7 @@ const { apiTokenAuth } = require('../../middlewares/api')
 const AuthController = require('../../controllers/api/AuthController')
 const NotificationController = require('../../controllers/api/NotificationController')
 const UserController = require('../../controllers/api/UserController')
+const PropertyController = require('../../controllers/api/PropertyController')
 const authMiddleware = (() => {
     const chain = connect();
     [formidableMiddleware(), apiTokenAuth].forEach((middleware) => {
@@ -23,5 +24,12 @@ router.post('/notification', NotificationController.SendNotification)
 
 //profile
 router.get('/my-profile',apiTokenAuth, UserController.myProfile)
+
+//property
+
+router.get('/user-property-list', apiTokenAuth, PropertyController.UserPropertyList);
+router.post('/add-property', apiTokenAuth, PropertyController.AddProperty);
+router.post('/edit-property', authMiddleware, PropertyController.EditPropertyDetail);
+router.delete('/delete-property/:id', apiTokenAuth, PropertyController.deleteProperty);
 
 module.exports = router
