@@ -8,7 +8,7 @@ const {
     DELETE, SUCCESS, FAIL, ACTIVE,
     BAD_REQUEST, INTERNAL_SERVER,
     UN_VERIFY,CUSTOMER,HOST,PARTNER,
-    MALE,FEMALE,OTHER,UNAUTHORIZED
+    MALE,FEMALE,OTHER,UNAUTHORIZED,USER_IMAGE
 } = require('../../utility/Constants')
 module.exports = {
 /**
@@ -28,11 +28,13 @@ myProfile: async(req, res) => {
     })
         .then(async (userData) => {
             if (userData) {
+                const profilePicture = (userData.profile_image) && userData.profile_image !== '' ? userData.profile_image : '';
+                userData.profile_image = await Helper.mediaUrl(USER_IMAGE, profilePicture);
                 return Response.successResponseData(
                     res,
                     userData,
                     res.locals.__('success')
-                )
+                     )
             } else {
                 return Response.successResponseWithoutData(
                     res,

@@ -27,5 +27,7 @@ module.exports = {
     HOST:2,
     PARTNER:3,
     READ:0,
-    NOT_READ:1
+    NOT_READ:1,
+    PROPERTY_IMAGE: 'assets/images/property',
+    USER_IMAGE:'assets/images/user',
 }

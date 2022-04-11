@@ -19,6 +19,10 @@ module.exports = (sequelize, DataTypes) => {
         sourceKey: 'id',
         foreignKey: 'receiver_id',
       })
+      User.hasOne(models.Property_view, {
+        sourceKey: 'id',
+        foreignKey: 'user_id',
+      })
     }
   }
   User.init({

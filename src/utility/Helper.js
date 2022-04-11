@@ -107,6 +107,19 @@ module.exports = {
             }
         });
     },
+    multipleImageUpload: (req, res, imageName,i) => {
+        const oldPath = req.files.image[i].path;
+        const newPath = `${path.join(__dirname, '../public/assets/images/property')
+        }/${imageName}`;
+        const rawData = fs.readFileSync(oldPath);
+        console.log(newPath);
+        // eslint-disable-next-line consistent-return
+        fs.writeFile(newPath, rawData, (err) => {
+            if (err) {
+                return Response.errorResponseData(res, res.__('somethingWentWrong'), 500);
+            }
+        });
+    },
     mediaUrl: (folder, name) => {
         if (name && name !== '') {
             return `${process.env.APP_URL}/${folder}/${name}`;

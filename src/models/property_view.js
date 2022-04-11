@@ -3,44 +3,35 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Property extends Model {
+  class Property_view extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Property.hasMany(models.Property_view, {
-        sourceKey: 'id',
-        foreignKey: 'property_id',
+      Property_view.hasOne(models.User, {
+        sourceKey: 'user_id',
+        foreignKey: 'id',
+      })
+      Property_view.hasOne(models.Property, {
+        sourceKey: 'property_id',
+        foreignKey: 'id',
       })
     }
   }
-  Property.init({
+  Property_view.init({
+    property_id: {
+      type: DataTypes.INTEGER,
+      allowNull:false,
+    },
     user_id: {
       type: DataTypes.INTEGER,
       allowNull:false,
     },
-    address: {
-      type: DataTypes.STRING(100)
-    },
-    category: {
-      type: DataTypes.STRING(100),
-    },
-    latitude: {
-      type: DataTypes.FLOAT,
-      allowNull:false
-    },
-    longitude: {
-      type: DataTypes.FLOAT,
+    image: {
+      type: DataTypes.STRING,
       allowNull:false,
-    },
-    price: {
-      type: DataTypes.INTEGER,
-      allowNull:false
-    },
-    description: {
-      type: DataTypes.STRING(200),
     },
     status: {
       type: DataTypes.INTEGER,
@@ -50,8 +41,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     timestamps:true,
-    modelName: 'Property',
-    tableName:'properties'
+    modelName: 'Property_view',
+    tableName: 'property_views'
   });
-  return Property;
+  return Property_view;
 };

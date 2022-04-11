@@ -24,11 +24,13 @@ router.post('/notification', NotificationController.SendNotification)
 
 //profile
 router.get('/my-profile',apiTokenAuth, UserController.myProfile)
+router.post('/edit-profile',authMiddleware, UserController.editProfile)
 
 //property
 
 router.get('/user-property-list', apiTokenAuth, PropertyController.UserPropertyList);
-router.post('/add-property', apiTokenAuth, PropertyController.AddProperty);
+router.get('/property-list', apiTokenAuth, PropertyController.PropertyList);
+router.post('/add-property', apiTokenAuth,formidableMiddleware({ multiples: true }), PropertyController.AddProperty);
 router.post('/edit-property', authMiddleware, PropertyController.EditPropertyDetail);
 router.delete('/delete-property/:id', apiTokenAuth, PropertyController.deleteProperty);
 

@@ -74,5 +74,6 @@
 	"editPropertyValidationPriceRequired": "Please enter price.",
 	"editPropertyValidationDescriptionRequired": "Please enter description.",
 	"propertyUpdateSuccess": "property has been updated success.",
-	"propertyDeleted": "Property detail deleted."
+	"propertyDeleted": "Property detail deleted.",
+	"propertyAddedSuccessfully": "property has benn added successfully."
 }
